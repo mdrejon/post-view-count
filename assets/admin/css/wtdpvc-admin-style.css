@@ -1,0 +1,24 @@
+ 
+  .wtdpvc_view_count_wrap .wtdpvc_view_count { 
+    background-color: #28a745;
+    padding: 7px 15px; 
+    font-weight: 700; 
+    color: #fff;
+    border-radius: 8px; 
+    display: inline-block;
+  }
+  .wtdpvc_view_count_wrap .wtdpvc_view_count.empty {  
+    background-color: #343a40;
+  }
+  .wtdpvc_shortcode_btn {
+    padding: 7px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #17a2b8;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .wtdpvc_shortcode_btn:hover { 
+    background-color: #6c757d;
+  }
