@@ -11,15 +11,19 @@
 3. Configure the plugin settings as per your needs.
 
 ## Usage
-Once activated, the plugin automatically suggests related posts based on the category of the current post.
+- Once activated, the plugin automatically starts recording the view count for each post.
+- To view the post view count, navigate to the admin post list screen. You will see a custom column labeled "View Count" displaying the view count for each post. You can click on the column header to sort posts by view count.
 
 ## Shortcode
 - [wtdpvc_post_view_count id=76]: With the post ID specified, you can display the post count on the frontend.
 - [wtdpvc_post_view_count]: You can use this shortcode directly within your single post page to display the post count without specifying a post ID.
+
 ## Screenshots
 You can view screenshots of the plugin in action at the following links:
-1. [Screenshot 1](https://prnt.sc/lYolvjwWoq_X)
-2. [Screenshot 2](https://prnt.sc/DN9aZz7beBf1) 
+1. [Screenshot 1](https://prnt.sc/-YoZ6zLj7wIe)
+2. [Screenshot 2](https://prnt.sc/DkgUk16xaf_3) 
+2. [Screenshot 2](https://prnt.sc/SsZdGG6ANs-p) 
+2. [Screenshot 2](https://prnt.sc/jlaXWzdp3Whh) 
 
 
 ## Support
