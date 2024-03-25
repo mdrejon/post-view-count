@@ -22,8 +22,8 @@
 You can view screenshots of the plugin in action at the following links:
 1. [Screenshot 1](https://prnt.sc/-YoZ6zLj7wIe)
 2. [Screenshot 2](https://prnt.sc/DkgUk16xaf_3) 
-2. [Screenshot 2](https://prnt.sc/SsZdGG6ANs-p) 
-2. [Screenshot 2](https://prnt.sc/jlaXWzdp3Whh) 
+2. [Screenshot 3](https://prnt.sc/SsZdGG6ANs-p) 
+2. [Screenshot 4](https://prnt.sc/jlaXWzdp3Whh) 
 
 
 ## Support
