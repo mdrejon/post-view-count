@@ -12,81 +12,86 @@
  * Domain Path: /languages
  */
 
+/**
+ * Post View Count main class
+ */
+class WTDPVC_VIEW_COUNT {
 
-class  WTDPVC_VIEW_COUNT {
-    public function __construct() {
+	/**
+	 *  __construct
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function __construct() {
 
-        // // Define constant
-        $this->wtdrp_constant();
- 
-        // Load plugin textdomain
-        add_action( 'plugins_loaded', array( $this, 'wtdpvc_load_textdomain' ) );
+		// Define constant.
+		$this->wtdrp_constant();
 
-        // Run the plugin
-        add_action( 'plugins_loaded', array( $this, 'wtdpvc_run' ) );  
-    }
- 
-    /**
-     * Load plugin textdomain.  
-     *
-     * @since 1.0.0
-     * @author Sydur Rahman <sydurrahmant1@gmail.com>
-     * @return void
-     */
-    public function wtdpvc_load_textdomain() {
+		// Load plugin textdomain.
+		add_action( 'plugins_loaded', array( $this, 'wtdpvc_load_textdomain' ) );
 
-        load_plugin_textdomain( 'post-view-count', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
+		// Run the plugin.
+		add_action( 'plugins_loaded', array( $this, 'wtdpvc_run' ) );
+	}
 
-    }
-    
-    /**
-     * Run the plugin
-     *
-     * @since 1.0.0
-     * @author Sydur Rahman <sydurrahmant1@gmail.com>
-     * @return void
-     */
-    public function wtdpvc_run() {
-        
-        // Check if it's admin
-        if( is_admin() ){
+	/**
+	 * Load plugin textdomain.
+	 *
+	 * @since 1.0.0
+	 * @author Sydur Rahman <sydurrahmant1@gmail.com>
+	 * @return void
+	 */
+	public function wtdpvc_load_textdomain() {
 
-            // Load admin class
-            require_once WTDPVC_PATH . 'admin/admin.php';
+		load_plugin_textdomain( 'post-view-count', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
 
-            // Run admin class
-            new WTDPVC_ADMIN();
+	/**
+	 * Run the plugin
+	 *
+	 * @since 1.0.0
+	 * @author Sydur Rahman <sydurrahmant1@gmail.com>
+	 * @return void
+	 */
+	public function wtdpvc_run() {
 
-            
-        } else { 
+		// Check if it's admin.
+		if ( is_admin() ) {
 
-            // Load app class
-            require_once WTDPVC_PATH . 'app/app.php';
+			// Load admin class.
+			require_once WTDPVC_PATH . 'admin/admin.php';
 
-            // Run app class
-            new WTDPVC_APP();
+			// Run admin class.
+			new WTDPVC_ADMIN();
 
-        }
+		} else {
 
-    }
+			// Load app class.
+			require_once WTDPVC_PATH . 'app/app.php';
 
-    /**
-     * Define constant
-     *
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    public function wtdrp_constant(){
+			// Run app class.
+			new WTDPVC_APP();
 
-        // Define constant
-        define( 'WTDPVC_VERSION', '1.0.0' ); 
-        define( 'WTDPVC_FILE', plugin_dir_url( __FILE__ ));
-        define( 'WTDPVC_PATH', plugin_dir_path( __FILE__ )); 
+		}
+	}
 
-    }
+	/**
+	 * Define constant
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function wtdrp_constant() {
 
+		// Define constant.
+		define( 'WTDPVC_VERSION', '1.0.0' );
+		define( 'WTDPVC_FILE', plugin_dir_url( __FILE__ ) );
+		define( 'WTDPVC_PATH', plugin_dir_path( __FILE__ ) );
+	}
 }
 
-// Run the plugin
-new WTDPVC_VIEW_COUNT(); 
+// Run the plugin.
+
+new WTDPVC_VIEW_COUNT();

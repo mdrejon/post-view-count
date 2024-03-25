@@ -1,110 +1,123 @@
-<?php 
+<?php
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+	exit; // Exit if accessed directly.
 }
 
+/**
+ * Post View Count Admin Class
+ */
 class WTDPVC_APP {
-    public function __construct() {  
 
-        // Enqueue admin scripts
-        add_action( 'wp_enqueue_scripts', array( $this, 'wtdpvc_enqueue_scripts' ) );
+	/**
+	 *  __construct
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function __construct() {
 
-        // Count post view
-        add_action( 'wp_head', array( $this, 'wtdpvc_count_post_view' ) );
+		// Enqueue admin scripts.
+		add_action( 'wp_enqueue_scripts', array( $this, 'wtdpvc_enqueue_scripts' ) );
 
-        // ShortCode for Post View Count passed the post id 
-        add_shortcode( 'wtdpvc_post_view_count', array( $this, 'wtdpvc_post_view_count_shortcode' ) );
-         
-    }
- 
-    /**
-     * Enqueue admin scripts
-     *
-     * @since 1.0.0
-     * @author Sydur Rahman <sydurrahmant1@gmail.com>
-     * @return void
-     */
-    public function wtdpvc_enqueue_scripts(){
- 
-        // Enqueue style
-        wp_enqueue_style( 'wtdpvc-admin-style', WTDPVC_FILE . 'assets/app/css/wtdpvc-style.css', array(), WTDPVC_VERSION, 'all' ); 
-    }
+		// Count post view.
+		add_action( 'wp_head', array( $this, 'wtdpvc_count_post_view' ) );
 
-    /**
-     * Count post view count
-     *
-     * @since 1.0.0
-     * @param int $post_id 
-     */
+		// ShortCode for Post View Count passed the post id.
+		add_shortcode( 'wtdpvc_post_view_count', array( $this, 'wtdpvc_post_view_count_shortcode' ) );
+	}
 
-    public function wtdpvc_count_post_view( $post_id ){ 
+	/**
+	 * Enqueue admin scripts
+	 *
+	 * @since 1.0.0
+	 * @author Sydur Rahman <sydurrahmant1@gmail.com>
+	 * @return void
+	 */
+	public function wtdpvc_enqueue_scripts() {
 
-        // Check if it's a single post page
-        if( is_single() ){ 
+		// Enqueue custom stylesheet for plugin.
+		wp_enqueue_style( 'wtdpvc-admin-style', WTDPVC_FILE . 'assets/app/css/wtdpvc-style.css', array(), WTDPVC_VERSION, 'all' );
+	}
 
-            // Get current post ID
-            $post_id = get_the_ID();
-             
-            // Post Meta Key
-            $count_key = 'wtdpvc_post_view_count';
+	/**
+	 * Count post view count
+	 *
+	 * @since 1.0.0
+	 * @param int $post_id
+	 * @return void
+	 */
+	public function wtdpvc_count_post_view( $post_id ) {
 
-            // Get post meta value
-            $count = get_post_meta( $post_id, $count_key, true );
+		// Check if it's a single post page.
+		if ( is_single() ) {
 
-            // If the count does not exist, set it to zero.
-            if( $count =='' ){
+			// Get current post ID.
+			$post_id = get_the_ID();
 
-                $count = 0;
-                delete_post_meta( $post_id, $count_key );
-                add_post_meta( $post_id, $count_key, 1 );
+			// Post Meta Key.
+			$count_key = 'wtdpvc_post_view_count';
 
-            }else{ // Otherwise, increment it by 1
+			// Get post meta value.
+			$count = get_post_meta( $post_id, $count_key, true );
 
-                $count++;
-                update_post_meta( $post_id, $count_key, $count );
-            } 
-        } 
+			// If the count does not exist, set it to zero.
+			if ( '' === $count ) {
 
-    }
+				$count = 0;
+				delete_post_meta( $post_id, $count_key );
+				add_post_meta( $post_id, $count_key, 1 );
 
-    /**
-     * ShortCode for Post View Count
-     *
-     * @since 1.0.0
-     * @param int $post_id 
-     */ 
-    public function wtdpvc_post_view_count_shortcode( $atts ){ 
+			} else { // Otherwise, increment it by 1.
 
-        // Shortcode attribute
-        $atts = shortcode_atts( array(
-            'id' => get_the_ID(),
-        ), $atts, 'wtdpvc_post_view_count' );
+				++$count;
+				update_post_meta( $post_id, $count_key, $count );
+			}
+		}
+	}
 
-        // Get post id
-        $post_id = $atts['id'];
+	/**
+	 * ShortCode for Post View Count
+	 *
+	 * @since 1.0.0
+	 * @param int $atts
+	 * @return string
+	 */
+	public function wtdpvc_post_view_count_shortcode( $atts ) {
 
-        // get post view count
-        $count_key = 'wtdpvc_post_view_count';
+		// Shortcode attribute.
+		$atts = shortcode_atts(
+			array(
+				'id' => get_the_ID(), // Default post id.
+			),
+			$atts, // Shortcode attributes.
+			'wtdpvc_post_view_count'
+		);
 
-        $count = get_post_meta( $post_id, $count_key, true ); 
+		// Get post id.
+		$post_id = $atts['id']; // Get post id.
 
-        if( $count =='' ){
-            return esc_html( __('No Views', 'post-view-count') );
-        }
+		// get post view count.
+		$count_key = 'wtdpvc_post_view_count';
 
-        ob_start();
-        ?>
-        <div class="wtdpvc-post-view-count">
-            <h2>
-                <?php echo esc_html( __('Page View',  'post-view-count'  ) ) ?>
-                <span><?php echo esc_html( __('Total Views',  'post-view-count'  ) ) ?></span>
-                <?php echo esc_html($count); ?>
-            </h2> 
-           
-            
-        </div>
+		$count = get_post_meta( $post_id, $count_key, true );
 
-        <?php
-        return ob_get_clean();
-    }
+		if ( '' === $count ) {
+			return esc_html( __( 'No Views', 'post-view-count' ) );
+		}
+
+		ob_start();
+		?>
+		<div class="wtdpvc-post-view-count">
+			<h2>
+				<?php echo esc_html( __( 'Page View', 'post-view-count' ) ); ?>
+				<span><?php echo esc_html( __( 'Total Views', 'post-view-count' ) ); ?></span>
+				<?php echo esc_html( $count ); ?>
+			</h2> 
+			
+			
+		</div>
+
+		<?php
+		return ob_get_clean();
+	}
 }

@@ -1,0 +1,17 @@
+{
+    "name": "vendor/post-view-count",
+    "description": "Post View Count WordPress Plugin.",
+    "authors": [
+        {
+            "name": "Sydur Rahman",
+            "email": "sydurrahmant1@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "wp-coding-standards/wpcs": "3.0"
+    },
+    "scripts": {
+        "lint": "phpcs",
+        "lint-fix": "phpcbf"
+    }
+}
