@@ -1,4 +1,16 @@
-### Post View Count WordPress Plugin. 
+=== Post View Count ===
+Contributors: mdrejon
+Donate link: https://sydurrahman.com/
+Tags: Post View Count
+Requires at least: 4.2
+Tested up to: 6.4.3
+Requires PHP: 7.4
+Stable tag: 3.3.6
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Post View Count WordPress Plugin. 
+
+### 
 
 ## Features
 - Using a post meta, the plugin stores the view count for a post. This count is incremented each time the post is viewed.
